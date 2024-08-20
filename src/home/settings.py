@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     'visits',
+    'commando',
 ]
 
 MIDDLEWARE = [
@@ -91,7 +92,7 @@ DATABASES = {
 
 
 CONN_MAX_AGE = decouple_config('CONN_MAX_AGE', cast=int, default=30)
-DATABASE_URL = decouple_config('DATABASE_URL', cast=str)
+DATABASE_URL = decouple_config('DATABASE_URL', default=None)
 
 if DATABASE_URL is not None:
     import dj_database_url
@@ -140,6 +141,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_BASE_DIR = BASE_DIR / 'staticfiles'
+STATICFILES_BASE_DIR.mkdir(exist_ok=True, parents=True)
 STATICFILES_VENDOR_DIR = STATICFILES_BASE_DIR / 'vendors'
 
 STATICFILES_DIRS = [
