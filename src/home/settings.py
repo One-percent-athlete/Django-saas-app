@@ -64,14 +64,19 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    # 'allauth.socialaccount.providers.github',
+    "allauth_ui",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    # "allauth.socialaccount.providers.github",
+    "widget_tweaks",
+    "slippers",
     
     'visits',
     'commando',
 ]
+
+ALLAUTH_UI_THEME = "light"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
