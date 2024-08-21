@@ -16,6 +16,25 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+EMAIL_BACKEND="django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST=decouple_config("EMAIL_HOST", cast=str, default="smtp.gmail.com")
+EMAIL_PORT=decouple_config("EMAIL_PORT", cast=str, default="587")
+EMAIL_USE_TLS=decouple_config("EMAIL_USE_TLS", cast=bool, default=True)
+EMAIL_USE_SSL=decouple_config("EMAIL_USE_SSL", cast=bool, default=False)
+EMAIL_HOST_USER=decouple_config("EMAIL_HOST_USER", cast=str, default=None)
+EMAIL_HOST_PASSWORD=decouple_config("EMAIL_HOST_PASSWORD", cast=str, default=None)
+
+ADMIN_USER_NAME=decouple_config("ADMIN_USER_NAME", default="Admin")
+ADMIN_USER_EMAIL=decouple_config("ADMIN_USER_EMAIL")
+
+MANAGERS=[]
+ADMINS=[]
+if all([ADMIN_USER_NAME, ADMIN_USER_EMAIL]):
+    ADMINS +=[
+        (f'{ADMIN_USER_NAME}', f'{ADMIN_USER_EMAIL}')
+    ]
+    MANAGERS=ADMINS
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
