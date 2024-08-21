@@ -63,17 +63,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    "allauth_ui",
-    "allauth",
-    "allauth.account",
-    "allauth.socialaccount",
-    # "allauth.socialaccount.providers.github",
-    "widget_tweaks",
-    "slippers",
     
     'visits',
     'commando',
+
+    "allauth_ui",
+    
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.github",
+    "widget_tweaks",
+    "slippers",
+
 ]
 
 ALLAUTH_UI_THEME = "light"
@@ -171,8 +173,13 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
+
 SOCIALACCOUNT_PROVIDERS = {
+    'github': {
+        'VERIFIED_EMAIL': True
+    }
 }
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
