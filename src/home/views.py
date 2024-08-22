@@ -23,3 +23,16 @@ def about_view(request):
     }
 
     return render(request, 'home.html', context)
+
+VALID_CODE = '123456'
+
+def pw_protected_view(request, *args, **kwargs):
+    is_allowed = request.session.get('protected_page_allowed') or 0
+    if request.method == 'POST':
+        user_pw_sent = request.POST.get('code') or None
+        if user_pw_sent == VALID_CODE:
+            is_allowed = 1
+            request.session.get('protected_page_allowed') = is_allowed
+    if is_allowed:
+        return render(request, 'protected/view.html')
+    return render(request, 'protected/entry.html')
