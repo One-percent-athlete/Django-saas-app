@@ -66,7 +66,7 @@ INSTALLED_APPS = [
     
     'visits',
     'commando',
-    'profiles'
+    'profiles',
 
     "allauth_ui",
     
