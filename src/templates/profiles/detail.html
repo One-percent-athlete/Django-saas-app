@@ -5,7 +5,16 @@ Profile
 {% endblock %}
 
 {% block content %}
-<h1>Welcome back {{ user }}</h1>
-
+{% if perms.auth or owner %}
+    {% if perms.auth.view_user or owner %}
+    <div>
+        <h1>Welcome back {{ user }}</h1>
+        {{ user_obj.first_name }} = {{ user_obj.last_name }}
+        {{ user_obj.last_login }}
+    </div>
+    {% else %}
+    <div>You are not allowed to see this.</div>
+    {% endif %}
+{% endif %}
 
 {% endblock %}
