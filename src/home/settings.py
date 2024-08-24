@@ -16,6 +16,8 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+LOGIN_REDIRECT_URL = '/'
+
 # EMAIL_BACKEND="django.core.mail.backends.smtp.EmailBackend"
 # EMAIL_HOST=decouple_config("EMAIL_HOST", cast=str, default="smtp.gmail.com")
 # EMAIL_PORT=decouple_config("EMAIL_PORT", cast=str, default="587")
@@ -67,6 +69,7 @@ INSTALLED_APPS = [
     'visits',
     'commando',
     'profiles',
+    'subscriptions',
 
     "allauth_ui",
     
@@ -166,6 +169,7 @@ ACCOUNT_AUTHENTICATION_METHOD="username_email"
 ACCOUNT_EMAIL_REQUIRED=True
 ACCOUNT_EMAIL_VERIFICATION="mandatory"
 ACCOUNT_EMAIL_SUBJECT_PREFIX="[DSSA] "
+
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
     'django.contrib.auth.backends.ModelBackend',
