@@ -13,6 +13,7 @@ SUB_PERMS = [
 class Subscription(models.Model):
 
     name = models.CharField(max_length=120)
+    active = models.BooleanField(default=True)
     groups = models.ManyToManyField(Group)
     permissions = models.ManyToManyField(Permission, 
         limit_choices_to={
