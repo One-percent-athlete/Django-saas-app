@@ -61,7 +61,7 @@ class SubscriptionPrice(models.Model):
     
     @property
     def stripe_price(self):
-        return self.price * 100
+        return int(self.price * 100)
     
     @property
     def product_stripe_id(self):
