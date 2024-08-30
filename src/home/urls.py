@@ -5,6 +5,7 @@ from django.urls import path, include
 
 from . import views
 from auth import views as auth_views
+from subscriptions import views as sub_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -17,5 +18,6 @@ urlpatterns = [
     path('about/', views.about_view, name='about'),
     path('login/', auth_views.login_view, name='login'),
     path('register/', auth_views.register_view, name='register'),
+    path('pricing/', sub_views.subscription_price_view, name='pricing'),
     path('profiles/', include('profiles.urls')),
 ]
