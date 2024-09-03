@@ -19,5 +19,6 @@ urlpatterns = [
     path('login/', auth_views.login_view, name='login'),
     path('register/', auth_views.register_view, name='register'),
     path('pricing/', sub_views.subscription_price_view, name='pricing'),
+    path('pricing/<str:interval>/', sub_views.subscription_price_view, name='pricing_interval'),
     path('profiles/', include('profiles.urls')),
 ]
