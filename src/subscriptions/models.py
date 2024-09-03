@@ -18,6 +18,7 @@ SUB_PERMS = [
 
 class Subscription(models.Model):
     name = models.CharField(max_length=120)
+    subtitle = models.TextField(blank=True, null=True)
     active = models.BooleanField(default=True)
     groups = models.ManyToManyField(Group)
     permissions = models.ManyToManyField(Permission, 
@@ -42,6 +43,11 @@ class Subscription(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def get_features_as_list(self):
+        if not self.features:
+            return []
+        return [x.strip() for x in self.features.split("\n")]
     
     def save(self, *args, **kwargs):
         if not stripe_id:
@@ -71,10 +77,22 @@ class SubscriptionPrice(models.Model):
         ordering = ['subscription__order', 'order', 'featured', '-updated']
 
     @property
+    def display_features_list(self):
+        if not self.subscription:
+            return []
+        return self.subscription.get_features_as_list()
+
+    @property
     def display_sub_name(self):
         if not self.subscription:
             return 'Plan'
         return self.subscription.name
+    
+    @property
+    def display_sub_subtitle(self):
+        if not self.subscription:
+            return 'Plan'
+        return self.subscription.subtitle
 
     @property
     def stripe_currency(self):
