@@ -71,6 +71,7 @@ INSTALLED_APPS = [
     'profiles',
     'customers',
     'subscriptions',
+    'checkouts',
 
     "allauth_ui",
     
